@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Axios from 'axios';
+import axios from 'axios';
 
 
 function App() {
   const [employee, setEmployee] = useState([]);
 
   useEffect(() => { 
-    Axios.get("http://dummy.restapiexample.com/api/v1/employees")
+    axios.get("http://dummy.restapiexample.com/api/v1/employees")
     .then(data=>{
       console.log(data.data.data);
       setEmployee(data.data.data);
