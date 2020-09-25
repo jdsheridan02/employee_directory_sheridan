@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import TableRow from "./components/TableRow";
 
 
 function App() {
@@ -16,14 +17,38 @@ function App() {
 
   }, []);
 
+  const onClick = () => {
+    let e=[...employee]
+    e.sort( (a,b) => b.id - a.id)
+    setEmployee(e)
+  }
 
   return (
     <div className>
-      {employee.map(e => {
-        return <div> {e.employee_name} </div>
+      <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID <button onClick={onClick}>sort</button></th>
+      <th scope="col">Name</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+  {employee.map(e => {
+        return <TableRow 
+        id={e.id}
+        name={e.employee_name}
+        salary={e.employee_salary}
+        age={e.employee_age}
+        /> 
         // use components to pass the information, the components will be how the HTML is designed, we are just using this area to pass information. 
 
       })}
+  </tbody>
+</table>
+
+      
     </div>
   );
 }
